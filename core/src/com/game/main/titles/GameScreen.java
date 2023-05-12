@@ -32,7 +32,7 @@ public class GameScreen extends ApplicationAdapter {
 		camera = new OrthographicCamera(DefaultData.cameraWidth, DefaultData.cameraHeight);
 		interfaceCamera = new OrthographicCamera(DefaultData.cameraWidth, DefaultData.cameraHeight);
 		anInterface = new Interface();
-		touchHandler = new TouchHandler(this,150, -150);
+		touchHandler = new TouchHandler(this,32*3, -32*3);
 		player = new Player(DefaultData.tileSize,DefaultData.tileSize, this);
 		map = new Map(this);
 		map.setMap("map01");
