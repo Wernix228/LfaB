@@ -6,7 +6,7 @@ import com.game.main.titles.GameScreen;
 
 public class Player extends Entity {
 
-    private final GameScreen game;
+    private static GameScreen game = null;
 
     public Player(float width, float height, GameScreen game) {
         this.x = x;
@@ -40,11 +40,11 @@ public class Player extends Entity {
         setUpHitBox();
     }
 
-    public boolean isVisible(float x, float y, int minusWidth, int minusHeight){
-        return x > (game.touchHandler.getX() + getWidth() / 2f) - DefaultData.cameraWidth - width + minusWidth
-                && x < (game.touchHandler.getX() + getWidth() / 2f) + DefaultData.cameraWidth - minusWidth
-                && y > (game.touchHandler.getY() + getHeight() / 2f) - DefaultData.cameraHeight - height + minusHeight
-                && y < (game.touchHandler.getY() + getHeight() / 2f) + DefaultData.cameraHeight - minusHeight;
+    public static boolean isVisible(float x, float y, int minusWidth, int minusHeight){
+        return x > (game.touchHandler.getX() + getWidth() / 2f) - DefaultData.width - width + minusWidth
+                && x < (game.touchHandler.getX() + getWidth() / 2f) + DefaultData.width - minusWidth
+                && y > (game.touchHandler.getY() + getHeight() / 2f) - DefaultData.height - height + minusHeight
+                && y < (game.touchHandler.getY() + getHeight() / 2f) + DefaultData.height - minusHeight;
     }
 
     private int animationTime;

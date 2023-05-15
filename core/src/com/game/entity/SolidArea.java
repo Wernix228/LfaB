@@ -19,7 +19,7 @@ public class SolidArea {
 
     public void render() {
         for (TileSolidBox solidBox : map.getTileManager().getSolidBoxes()) {
-            if (player.isVisible((int) solidBox.x, (int) solidBox.y, 0, 0)) {
+            if (Player.isVisible((int) solidBox.x, (int) solidBox.y, 0, 0)) {
                 tilesInCollisionArea++;
                 playerVisible(solidBox);
             }

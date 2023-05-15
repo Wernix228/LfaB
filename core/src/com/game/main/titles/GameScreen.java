@@ -5,6 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.FillViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.game.data.DefaultData;
 import com.game.entity.Player;
 import com.game.entity.SolidArea;
@@ -23,14 +25,16 @@ public class GameScreen extends ApplicationAdapter {
 	public Map map;
 	public SolidArea solidArea;
 	public Drawer drawer;
+	public Viewport viewport;
 	
 	@Override
 	public void create () {
-		Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
-		DefaultData.cameraWidth = Gdx.graphics.getWidth();
-		DefaultData.cameraHeight = Gdx.graphics.getHeight();
-		camera = new OrthographicCamera(DefaultData.cameraWidth, DefaultData.cameraHeight);
-		interfaceCamera = new OrthographicCamera(DefaultData.cameraWidth, DefaultData.cameraHeight);
+//		Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+		DefaultData.width = Gdx.graphics.getWidth();
+		DefaultData.height = Gdx.graphics.getHeight();
+		camera = new OrthographicCamera(1280,720);
+		viewport = new FillViewport(1280,720,camera);
+		interfaceCamera = new OrthographicCamera(DefaultData.width, DefaultData.height);
 		anInterface = new Interface();
 		touchHandler = new TouchHandler(this,32*3, -32*3);
 		player = new Player(DefaultData.tileSize,DefaultData.tileSize, this);
@@ -49,7 +53,7 @@ public class GameScreen extends ApplicationAdapter {
 		ScreenUtils.clear(0, 0, 0, 1);
 		touchHandler.render();
 		player.render();
-		map.draw(player);
+		map.draw();
 		drawer.render();
 	}
 	
@@ -65,7 +69,7 @@ public class GameScreen extends ApplicationAdapter {
 		drawer.getBatchInterface().setProjectionMatrix(interfaceCamera.combined);
 		map.getTileManager().getBatch().setProjectionMatrix(camera.combined);
 		camera.position.set(new Vector3(player.getX() + player.getWidth() / 2f, player.getY() + player.getHeight() / 2f, 0));
-		interfaceCamera.position.set(new Vector3(DefaultData.cameraWidth / 2f, DefaultData.cameraHeight / 2f, 0));
+		interfaceCamera.position.set(new Vector3(DefaultData.width / 2f, DefaultData.height / 2f, 0));
 		camera.update();
 		interfaceCamera.update();
 	}

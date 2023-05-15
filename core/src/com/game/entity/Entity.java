@@ -10,8 +10,8 @@ public class Entity {
 
     protected float x;
     protected float y;
-    protected float width;
-    protected float height;
+    protected static float width;
+    protected static float height;
 
     public void dispose(){
         img.dispose();
@@ -40,11 +40,11 @@ public class Entity {
         return y;
     }
 
-    public float getWidth() {
+    public static float getWidth() {
         return width;
     }
 
-    public float getHeight() {
+    public static float getHeight() {
         return height;
     }
 

@@ -16,7 +16,6 @@ public class Map {
     private final Array<Tile> tiles = new Array<>();
     private final TileManager tileManager;
     private final GameScreen game;
-    private int map;
     public Array<Tile> getTiles() {
         return tiles;
     }
@@ -37,16 +36,12 @@ public class Map {
         tileManager.createSolidBoxes();
     }
 
-    public void draw(Player player) {
-        tileManager.render(player);
+    public void draw() {
+        tileManager.render();
     }
 
     public void dispose() {
         tileManager.dispose();
-    }
-
-    public int getMap() {
-        return map;
     }
 
     private String levelFile(String maps) {
