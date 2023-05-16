@@ -47,6 +47,23 @@ public class SolidArea {
             if (collisionChecker(player.getHitBox(), solidBox).equals("bottom")) {
                 touchH.collisionDeltaMinusY = 0;
             }
+
+            if (touchH.collisionDeltaPlusX == 0 && touchH.collisionDeltaMinusX == 0) {
+                if (player.getHitBox().x + player.getHitBox().width / 2 > solidBox.x) {
+                    touchH.collisionDeltaPlusX=1;
+                } else if (player.getHitBox().x + player.getHitBox().width / 2 < solidBox.x) {
+                    touchH.collisionDeltaMinusX=1;
+                }
+            }
+
+            if (touchH.collisionDeltaPlusY == 0 && touchH.collisionDeltaMinusY == 0) {
+                if (player.getHitBox().y + player.getHitBox().height / 2 > solidBox.y) {
+                    touchH.collisionDeltaPlusY=1;
+                } else if (player.getHitBox().y + player.getHitBox().height / 2 < solidBox.y) {
+                    touchH.collisionDeltaMinusY=1;
+                }
+            }
+
         } else {
             tilesInCollisionArea--;
         }

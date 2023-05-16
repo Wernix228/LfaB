@@ -18,10 +18,7 @@ public class Entity {
     }
 
     public void setUpHitBox(){
-        hitBox.x=x;
-        hitBox.y=y;
-        hitBox.width=width;
-        hitBox.height=height;
+        hitBox.set(x+width/4f, y, width/2f, height/2f);
     }
 
     public Rectangle getHitBox() {

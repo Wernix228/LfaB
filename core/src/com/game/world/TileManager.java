@@ -7,20 +7,18 @@ import com.badlogic.gdx.utils.Array;
 import com.game.data.DefaultData;
 import com.game.entity.Player;
 import com.game.world.items.Item;
-import com.game.world.items.Items;
+import com.game.world.items.ItemManager;
 
 public class TileManager {
     private final Map map;
     private final SpriteBatch batch = new SpriteBatch();
     private final Sprite[] sprite = new Sprite[DefaultData.tiles];
     private final Array<TileSolidBox> solidBoxes = new Array<>();
-    private final Items items;
 
 
     public TileManager(Map map) {
         this.map = map;
         setTextures();
-        items  = new Items();
     }
 
     private void setTextures() {
@@ -44,9 +42,6 @@ public class TileManager {
         for (int i = 0; i < map.getTiles().size; i++) {
             if (Player.isVisible(map.getTiles().get(i).x, map.getTiles().get(i).y, 100, 100)) {
                 batch.draw(sprite[map.getTiles().get(i).texture], map.getTiles().get(i).x, map.getTiles().get(i).y, DefaultData.tileSize, DefaultData.tileSize);
-                for (Item item:items.getItems()) {
-                    batch.draw(item.getTexture(),item.getVector().x+DefaultData.tileSize/4,item.getVector().y+DefaultData.tileSize/4,DefaultData.tileSize/2,DefaultData.tileSize/2);
-                }
             }
         }
         batch.end();

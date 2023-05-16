@@ -1,6 +1,7 @@
 package com.game.entity;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.game.data.DefaultData;
 import com.game.main.titles.GameScreen;
 
@@ -9,11 +10,9 @@ public class Player extends Entity {
     private static GameScreen game = null;
 
     public Player(float width, float height, GameScreen game) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.game = game;
+        Entity.width = width;
+        Entity.height = height;
+        Player.game = game;
 
         img = new Texture("textures/player/step1Right.png");
 
@@ -45,6 +44,12 @@ public class Player extends Entity {
                 && x < (game.touchHandler.getX() + getWidth() / 2f) + DefaultData.width - minusWidth
                 && y > (game.touchHandler.getY() + getHeight() / 2f) - DefaultData.height - height + minusHeight
                 && y < (game.touchHandler.getY() + getHeight() / 2f) + DefaultData.height - minusHeight;
+    }
+    public static boolean isVisible(Rectangle rectangle){
+        return rectangle.x > (game.touchHandler.getX() + getWidth() / 2f) - DefaultData.width - width + 0
+                && rectangle.x < (game.touchHandler.getX() + getWidth() / 2f) + DefaultData.width - 0
+                && rectangle.y > (game.touchHandler.getY() + getHeight() / 2f) - DefaultData.height - height + 0
+                && rectangle.y < (game.touchHandler.getY() + getHeight() / 2f) + DefaultData.height - 0;
     }
 
     private int animationTime;
