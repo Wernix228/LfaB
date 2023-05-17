@@ -16,8 +16,11 @@ public class ItemManager {
     }
 
     private void setUpItem() {
-        items.add(new Boots(3, 3, true));
-        items.add(new Boots(2,3,true));
+        for (int i = 5; i < 11; i++) {
+            for (int j = 5; j < 11; j++) {
+                items.add(new Boots(i,j,true));
+            }
+        }
     }
 
 }

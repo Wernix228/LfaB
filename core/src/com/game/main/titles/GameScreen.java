@@ -50,7 +50,7 @@ public class GameScreen extends ApplicationAdapter {
         drawer = new Drawer(this);
         itemManager = new ItemManager();
         eventHandler = new EventHandler(this);
-        inventory = new Inventory(5,5);
+        inventory = new Inventory(5,5,this);
         setUpCamera();
     }
 

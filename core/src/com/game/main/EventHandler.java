@@ -15,7 +15,7 @@ public class EventHandler {
     public void render() {
         for (int i = 0; i < gameScreen.itemManager.getItems().size(); i++) {
             if (Player.isVisible(gameScreen.itemManager.getItems().get(i).getRectangle())) {
-                if (gameScreen.player.getHitBox().overlaps(gameScreen.itemManager.getItems().get(i).getRectangle()) && !gameScreen.itemManager.getItems().get(i).isEventIsActive()) {
+                if (gameScreen.player.getHitBox().overlaps(gameScreen.itemManager.getItems().get(i).getRectangle()) && !gameScreen.itemManager.getItems().get(i).isEventIsActive() && !gameScreen.inventory.isInventoryFull()) {
                     gameScreen.itemManager.getItems().get(i).setEventIsActive(true);
                     gameScreen.inventory.add(gameScreen.itemManager.getItems().get(i));
                     gameScreen.itemManager.getItems().get(i).setTaken(true);
