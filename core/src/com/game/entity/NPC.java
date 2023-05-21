@@ -25,7 +25,7 @@ public class NPC extends Entity {
 
     public void render() {
         time++;
-        if (time % 30 == 0) {
+        if (time % 2 == 0) {
             changeDirection();
         }
         if (direction.equals("top")) y += speed;
@@ -53,5 +53,9 @@ public class NPC extends Entity {
 
     public void setCollSide(String collSide) {
         this.collSide = collSide;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 }

@@ -77,10 +77,10 @@ public class SolidArea {
     private void npcVisible(Rectangle rectangle,NPC npc){
         if (!collisionChecker(npc.getHitBox(), rectangle).equals("nothing")) {
             npc.setCollSide(collisionChecker(npc.getHitBox(), rectangle));
-            if(collisionChecker(npc.getHitBox(), rectangle).equals("top")) npc.setY(npc.getY()-1);
-            if(collisionChecker(npc.getHitBox(), rectangle).equals("bottom")) npc.setY(npc.getY()+1);
-            if(collisionChecker(npc.getHitBox(), rectangle).equals("left")) npc.setX(npc.getX()+1);
-            if(collisionChecker(npc.getHitBox(), rectangle).equals("right")) npc.setX(npc.getX()-1);
+            if(collisionChecker(npc.getHitBox(), rectangle).equals("top")) npc.setY(npc.getY()-npc.getSpeed());
+            if(collisionChecker(npc.getHitBox(), rectangle).equals("bottom")) npc.setY(npc.getY()+npc.getSpeed());
+            if(collisionChecker(npc.getHitBox(), rectangle).equals("left")) npc.setX(npc.getX()+npc.getSpeed());
+            if(collisionChecker(npc.getHitBox(), rectangle).equals("right")) npc.setX(npc.getX()-npc.getSpeed());
         }
 //        if (!collisionChecker(rectangle,npc.getHitBox()).equals("nothing")) System.out.println(collisionChecker(rectangle,npc.getHitBox()));
     }

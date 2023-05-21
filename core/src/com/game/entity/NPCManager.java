@@ -9,7 +9,7 @@ public class NPCManager {
     GameScreen game;
     Array<NPC> npcs;
 
-    public NPCManager(GameScreen game){
+    public NPCManager(GameScreen game) {
         this.game = game;
         npcs = new Array<>();
         setUp();
@@ -18,16 +18,19 @@ public class NPCManager {
     public Array<NPC> getNpcs() {
         return npcs;
     }
-    public void render(){
-        for (NPC n:npcs) {
-            if (Player.isVisible(n.getX(),n.getY(), (int)DefaultData.tileSize,(int)DefaultData.tileSize)){
+
+    public void render() {
+        for (NPC n : npcs) {
+            if (Player.isVisible(n.getX(), n.getY(), (int) DefaultData.tileSize * 10, (int) DefaultData.tileSize * 10)) {
                 n.render();
             }
         }
     }
 
-    private void setUp(){
-        npcs.add(new NPC(1));
+    private void setUp() {
+        for (int i = 0; i < 10000; i++) {
+            npcs.add(new NPC(1));
+        }
     }
 
 }
