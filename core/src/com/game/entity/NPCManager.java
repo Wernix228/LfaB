@@ -26,7 +26,7 @@ public class NPCManager {
     }
 
     private void setUp() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 2; i++) {
             npcs.add(new NPC(1));
         }
     }
