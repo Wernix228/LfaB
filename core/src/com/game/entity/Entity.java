@@ -48,4 +48,12 @@ public class Entity {
     public Texture getImg() {
         return img;
     }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
 }

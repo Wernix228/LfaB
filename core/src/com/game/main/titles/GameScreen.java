@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.game.data.DefaultData;
 import com.game.entity.Inventory;
+import com.game.entity.NPCManager;
 import com.game.entity.Player;
 import com.game.entity.SolidArea;
 import com.game.main.Drawer;
@@ -32,6 +33,7 @@ public class GameScreen extends ApplicationAdapter {
     public ItemManager itemManager;
     public EventHandler eventHandler;
     public Inventory inventory;
+    public NPCManager npcManager;
 
     @Override
     public void create() {
@@ -46,7 +48,8 @@ public class GameScreen extends ApplicationAdapter {
         player = new Player(DefaultData.tileSize, DefaultData.tileSize, this);
         map = new Map(this);
         map.setMap("map01");
-        solidArea = new SolidArea(map, touchHandler, player);
+        npcManager = new NPCManager(this);
+        solidArea = new SolidArea(map, touchHandler, player,npcManager);
         drawer = new Drawer(this);
         itemManager = new ItemManager();
         eventHandler = new EventHandler(this);
@@ -65,6 +68,7 @@ public class GameScreen extends ApplicationAdapter {
         drawer.render();
         eventHandler.render();
         inventory.render();
+        npcManager.render();
     }
 
     @Override

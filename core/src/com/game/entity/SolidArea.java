@@ -9,12 +9,14 @@ public class SolidArea {
     private final TouchHandler touchH;
     private final Player player;
     private final Map map;
+    private NPCManager npcManager;
     private int tilesInCollisionArea;
 
-    public SolidArea(Map map, TouchHandler touchH, Player player) {
+    public SolidArea(Map map, TouchHandler touchH, Player player,NPCManager npcManager) {
         this.map = map;
         this.touchH = touchH;
         this.player = player;
+        this.npcManager = npcManager;
     }
 
     public void render() {
@@ -22,6 +24,9 @@ public class SolidArea {
             if (Player.isVisible((int) solidBox.x, (int) solidBox.y, 0, 0)) {
                 tilesInCollisionArea++;
                 playerVisible(solidBox);
+                for (NPC n : npcManager.npcs) {
+                    npcVisible(solidBox,n);
+                }
             }
         }
         if (tilesInCollisionArea == 0) {
@@ -67,6 +72,16 @@ public class SolidArea {
         } else {
             tilesInCollisionArea--;
         }
+    }
+    private void npcVisible(Rectangle rectangle,NPC npc){
+        if (!collisionChecker(npc.getHitBox(), rectangle).equals("nothing")) {
+            npc.setCollSide(collisionChecker(npc.getHitBox(), rectangle));
+            if(collisionChecker(npc.getHitBox(), rectangle).equals("top")) npc.setY(npc.getY()-1);
+            if(collisionChecker(npc.getHitBox(), rectangle).equals("bottom")) npc.setY(npc.getY()+1);
+            if(collisionChecker(npc.getHitBox(), rectangle).equals("left")) npc.setX(npc.getX()+1);
+            if(collisionChecker(npc.getHitBox(), rectangle).equals("right")) npc.setX(npc.getX()-1);
+        }
+//        if (!collisionChecker(rectangle,npc.getHitBox()).equals("nothing")) System.out.println(collisionChecker(rectangle,npc.getHitBox()));
     }
 
     private String collisionChecker(Rectangle solidBox1, Rectangle solidBox2) {
