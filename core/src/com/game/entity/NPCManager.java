@@ -1,6 +1,7 @@
 package com.game.entity;
 
 import com.badlogic.gdx.utils.Array;
+import com.game.data.DefaultData;
 import com.game.main.titles.GameScreen;
 
 public class NPCManager {
@@ -19,7 +20,9 @@ public class NPCManager {
     }
     public void render(){
         for (NPC n:npcs) {
-            n.render();
+            if (Player.isVisible(n.getX(),n.getY(), (int)DefaultData.tileSize,(int)DefaultData.tileSize)){
+                n.render();
+            }
         }
     }
 

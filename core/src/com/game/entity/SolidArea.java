@@ -1,6 +1,7 @@
 package com.game.entity;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.game.data.DefaultData;
 import com.game.main.TouchHandler;
 import com.game.world.Map;
 import com.game.world.TileSolidBox;
@@ -21,7 +22,7 @@ public class SolidArea {
 
     public void render() {
         for (TileSolidBox solidBox : map.getTileManager().getSolidBoxes()) {
-            if (Player.isVisible((int) solidBox.x, (int) solidBox.y, 0, 0)) {
+            if (Player.isVisible((int) solidBox.x, (int) solidBox.y, 0,0)) {
                 tilesInCollisionArea++;
                 playerVisible(solidBox);
                 for (NPC n : npcManager.npcs) {
