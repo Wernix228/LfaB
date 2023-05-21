@@ -10,6 +10,8 @@ public class NPC extends Entity {
     private long time;
     private String direction;
     private String collSide = "nothing";
+    private String oldDirection = collSide;
+    private boolean collision = false;
 
     public NPC(int type) {
         switch (type) {
@@ -24,16 +26,24 @@ public class NPC extends Entity {
     }
 
     public void render() {
-        time++;
-        if (time % 2 == 0) {
-            changeDirection();
+        if (Player.isVisible(getX(), getY(), (int) DefaultData.tileSize, (int) DefaultData.tileSize)) {
+            time++;
+            if (time % 30 == 0) {
+                changeDirection();
+            }
+            if (!direction.equals(oldDirection)) {
+                collSide = "nothing";
+                collision = false;
+            }
+            if (!collision) {
+                if (direction.equals("top")) y += speed;
+                if (direction.equals("bottom")) y -= speed;
+                if (direction.equals("left")) x -= speed;
+                if (direction.equals("right")) x += speed;
+            }
+            oldDirection = direction;
         }
-        if (direction.equals("top")) y += speed;
-        if (direction.equals("bottom")) y -= speed;
-        if (direction.equals("left")) x -= speed;
-        if (direction.equals("right")) x += speed;
-        hitBox.set(x, y, DefaultData.tileSize/2, DefaultData.tileSize/2);
-        checkColl();
+        hitBox.set(x, y, DefaultData.tileSize / 2, DefaultData.tileSize / 2);
     }
 
     private void changeDirection() {
@@ -44,18 +54,15 @@ public class NPC extends Entity {
         if (i == 4) direction = "bottom";
     }
 
-    private void checkColl() {
-        if (collSide.equals(direction)) speed = 0;
-        else speed = 4;
-
-
-    }
-
     public void setCollSide(String collSide) {
         this.collSide = collSide;
     }
 
     public int getSpeed() {
         return speed;
+    }
+
+    public void setCollision(boolean collision) {
+        this.collision = collision;
     }
 }

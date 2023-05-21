@@ -21,14 +21,12 @@ public class NPCManager {
 
     public void render() {
         for (NPC n : npcs) {
-            if (Player.isVisible(n.getX(), n.getY(), (int) DefaultData.tileSize * 10, (int) DefaultData.tileSize * 10)) {
-                n.render();
-            }
+            n.render();
         }
     }
 
     private void setUp() {
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 10; i++) {
             npcs.add(new NPC(1));
         }
     }
